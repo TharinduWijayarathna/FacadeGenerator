@@ -1,11 +1,13 @@
 <?php
 
-namespace DummyNamespace\Services;
+namespace Domain\Facades;
 
-class DummyNameService
+use Illuminate\Support\Facades\Facade;
+
+class DummyNameFacade extends Facade
 {
-    public function doSomething()
+    protected static function getFacadeAccessor()
     {
-        // Implement your logic here
+        return 'DummyNameService';
     }
 }

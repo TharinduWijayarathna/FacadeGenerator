@@ -1,8 +1,31 @@
 <?php
 
-namespace DummyNamespace\Services;
+namespace Domain\Services;
 
 class DummyNameService
 {
-    // Your service methods
+    public function create(array $data)
+    {
+        // Implement create functionality
+    }
+
+    public function read($id)
+    {
+        // Implement read functionality
+    }
+
+    public function update($id, array $data)
+    {
+        // Implement update functionality
+    }
+
+    public function delete($id)
+    {
+        // Implement delete functionality
+    }
+
+    public function list()
+    {
+        // Implement list functionality
+    }
 }

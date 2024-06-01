@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\File;
 class MakeDomainCommand extends Command
 {
     protected $signature = 'make:domain {name}';
-    protected $description = 'Create a new domain with a facade and service.';
+    protected $description = 'Create a new domain with a facade and service with CRUD functionality.';
 
     public function handle()
     {
         $name = $this->argument('name');
-        $facadePath = app_path("Domain/Facades/{$name}Facade.php");
-        $servicePath = app_path("Domain/Services/{$name}Service.php");
+        $domainPath = base_path('domain');
+        $facadePath = $domainPath . "/Facades/{$name}Facade.php";
+        $servicePath = $domainPath . "/Services/{$name}Service.php";
 
-        if (!File::exists(app_path('Domain/Facades'))) {
-            File::makeDirectory(app_path('Domain/Facades'), 0755, true);
+        if (!File::exists($domainPath . '/Facades')) {
+            File::makeDirectory($domainPath . '/Facades', 0755, true);
         }
-        if (!File::exists(app_path('Domain/Services'))) {
-            File::makeDirectory(app_path('Domain/Services'), 0755, true);
+        if (!File::exists($domainPath . '/Services')) {
+            File::makeDirectory($domainPath . '/Services', 0755, true);
         }
 
         $stubFacadePath = __DIR__ . '/../stubs/facade.stub';
@@ -38,7 +39,7 @@ class MakeDomainCommand extends Command
     protected function replacePlaceholder($path, $name)
     {
         $content = File::get($path);
-        $content = str_replace(['DummyName', 'DummyNamespace'], [$name, 'App\\Domain'], $content);
+        $content = str_replace(['DummyName', 'DummyNamespace'], [$name, 'Domain'], $content);
         File::put($path, $content);
     }
 }
