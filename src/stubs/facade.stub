@@ -3,11 +3,12 @@
 namespace Domain\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Domain\Services\DummyNameService;
 
 class DummyNameFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'DummyNameService';
+        return DummyNameService::class;
     }
 }

@@ -30,16 +30,19 @@ class MakeDomainCommand extends Command
         File::copy($stubFacadePath, $facadePath);
         File::copy($stubServicePath, $servicePath);
 
-        $this->replacePlaceholder($facadePath, $name);
-        $this->replacePlaceholder($servicePath, $name);
+        $this->replacePlaceholder($facadePath, $name, 'Facade');
+        $this->replacePlaceholder($servicePath, $name, 'Service');
 
         $this->info("Facade and Service for {$name} created successfully.");
     }
 
-    protected function replacePlaceholder($path, $name)
+    protected function replacePlaceholder($path, $name, $type)
     {
         $content = File::get($path);
         $content = str_replace(['DummyName', 'DummyNamespace'], [$name, 'Domain'], $content);
+        if ($type === 'Facade') {
+            $content = str_replace('DummyNameService', "{$name}Service", $content);
+        }
         File::put($path, $content);
     }
 }
