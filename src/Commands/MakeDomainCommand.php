@@ -23,8 +23,11 @@ class MakeDomainCommand extends Command
             File::makeDirectory(app_path('Domain/Services'), 0755, true);
         }
 
-        File::copy(resource_path('stubs/vendor/laravel-domain/facade.stub'), $facadePath);
-        File::copy(resource_path('stubs/vendor/laravel-domain/service.stub'), $servicePath);
+        $stubFacadePath = __DIR__ . '/../stubs/facade.stub';
+        $stubServicePath = __DIR__ . '/../stubs/service.stub';
+
+        File::copy($stubFacadePath, $facadePath);
+        File::copy($stubServicePath, $servicePath);
 
         $this->replacePlaceholder($facadePath, $name);
         $this->replacePlaceholder($servicePath, $name);
