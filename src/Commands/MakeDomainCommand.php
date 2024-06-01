@@ -4,6 +4,7 @@ namespace Tharindu\DDDGenerator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class MakeDomainCommand extends Command
 {
@@ -47,6 +48,11 @@ class MakeDomainCommand extends Command
     protected function generateFile($path, $stub, $name)
     {
         $stubPath = __DIR__ . "/../../stubs/{$stub}";
+        
+        if (! $this->files->exists($stubPath)) {
+            throw new FileNotFoundException("File does not exist at path {$stubPath}.");
+        }
+
         $stubContent = $this->files->get($stubPath);
 
         $content = str_replace('{{ class }}', $name, $stubContent);
