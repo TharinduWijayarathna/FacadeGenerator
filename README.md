@@ -94,13 +94,13 @@ Once you've made these changes, Laravel will autoload classes from your `domain`
 
 _Generating a Domain_
 
-To generate a domain service and facade named `UserService`, run:
+To generate a domain service and facade named `User`, run:
 
 ```bash
-php artisan make:domain UserService
+php artisan make:domain User
 ```
 
-This will create `UserServiceFacade.php` and `UserServiceService.php` in the `domain` directory.
+This will create `UserFacade.php` and `UserService.php` in the `domain` directory.
 
 _Using the Generated Files_
 
@@ -138,16 +138,6 @@ class UserService
         // Implement list functionality
     }
 }
-```
-
----
-
-**Testing**
-
-You can run the tests using the following command:
-
-```bash
-composer test
 ```
 
 ---
