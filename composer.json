@@ -9,14 +9,16 @@
     },
     "autoload": {
         "psr-4": {
-            "tharindu\\ddd_generator\\": "src/"
+            "Tharindu\\DDDGenerator\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "tharindu\\ddd_generator\\DomainServiceProvider"
+                "Tharindu\\DDDGenerator\\DomainServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
