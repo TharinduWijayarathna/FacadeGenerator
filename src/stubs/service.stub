@@ -1,0 +1,8 @@
+<?php
+
+namespace DummyNamespace\Services;
+
+class DummyNameService
+{
+    // Your service methods
+}

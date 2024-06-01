@@ -1,0 +1,22 @@
+{
+    "name": "tharindu/ddd_generator",
+    "description": "A Laravel package to generate facades and services.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "illuminate/support": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "tharindu\\ddd_generator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "tharindu\\ddd_generator\\DomainServiceProvider"
+            ]
+        }
+    }
+}
