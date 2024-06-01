@@ -3,46 +3,54 @@
 namespace Tharindu\DDDGenerator\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 
 class MakeDomainCommand extends Command
 {
     protected $signature = 'make:domain {name}';
-    protected $description = 'Create a new domain with a facade and service with CRUD functionality.';
+    protected $description = 'Generate a new domain with a service and facade';
+    protected $files;
+
+    public function __construct(Filesystem $files)
+    {
+        parent::__construct();
+        $this->files = $files;
+    }
 
     public function handle()
     {
         $name = $this->argument('name');
-        $domainPath = base_path('domain');
-        $facadePath = $domainPath . "/Facades/{$name}Facade.php";
-        $servicePath = $domainPath . "/Services/{$name}Service.php";
 
-        if (!File::exists($domainPath . '/Facades')) {
-            File::makeDirectory($domainPath . '/Facades', 0755, true);
-        }
-        if (!File::exists($domainPath . '/Services')) {
-            File::makeDirectory($domainPath . '/Services', 0755, true);
-        }
+        $facadePath = base_path("domain/Facades/{$name}Facade/{$name}Facade.php");
+        $servicePath = base_path("domain/Services/{$name}Service/{$name}Service.php");
 
-        $stubFacadePath = __DIR__ . '/../stubs/facade.stub';
-        $stubServicePath = __DIR__ . '/../stubs/service.stub';
+        // Ensure the directories exist
+        $this->makeDirectory($facadePath);
+        $this->makeDirectory($servicePath);
 
-        File::copy($stubFacadePath, $facadePath);
-        File::copy($stubServicePath, $servicePath);
+        // Generate the files using stubs
+        $this->generateFile($facadePath, 'facade.stub', $name);
+        $this->generateFile($servicePath, 'service.stub', $name);
 
-        $this->replacePlaceholder($facadePath, $name, 'Facade');
-        $this->replacePlaceholder($servicePath, $name, 'Service');
-
-        $this->info("Facade and Service for {$name} created successfully.");
+        $this->info("{$name}Facade and {$name}Service created successfully.");
     }
 
-    protected function replacePlaceholder($path, $name, $type)
+    protected function makeDirectory($path)
     {
-        $content = File::get($path);
-        $content = str_replace(['DummyName', 'DummyNamespace'], [$name, 'Domain'], $content);
-        if ($type === 'Facade') {
-            $content = str_replace('DummyNameService', "{$name}Service", $content);
+        $directory = dirname($path);
+
+        if (! $this->files->isDirectory($directory)) {
+            $this->files->makeDirectory($directory, 0755, true);
         }
-        File::put($path, $content);
+    }
+
+    protected function generateFile($path, $stub, $name)
+    {
+        $stubPath = __DIR__ . "/../../stubs/{$stub}";
+        $stubContent = $this->files->get($stubPath);
+
+        $content = str_replace('{{ class }}', $name, $stubContent);
+
+        $this->files->put($path, $content);
     }
 }

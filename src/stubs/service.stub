@@ -2,7 +2,7 @@
 
 namespace Domain\Services;
 
-class DummyNameService
+class {{ class }}Service
 {
     public function create(array $data)
     {

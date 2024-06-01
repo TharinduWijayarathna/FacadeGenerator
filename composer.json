@@ -10,7 +10,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Tharindu\\DDDGenerator\\": "src/"
+            "Tharindu\\DDDGenerator\\": "src/",
+            "Domain\\": "domain/"
         }
     },
     "extra": {
