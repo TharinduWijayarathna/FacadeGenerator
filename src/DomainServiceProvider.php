@@ -1,8 +1,7 @@
 <?php
 
-namespace tharindu\ddd_generator;
+namespace Tharindu\DDDGenerator;
 
-use harindu\ddd_generator\Commands\MakeDomainCommand;
 use Illuminate\Support\ServiceProvider;
 
 class DomainServiceProvider extends ServiceProvider
@@ -10,7 +9,7 @@ class DomainServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-            MakeDomainCommand::class,
+            Commands\MakeDomainCommand::class,
         ]);
     }
 
