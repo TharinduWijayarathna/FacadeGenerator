@@ -1,4 +1,4 @@
-<?php 
+<?php
 // tests/DomainGeneratorTest.php
 
 use Illuminate\Support\Facades\Artisan;
@@ -34,6 +34,3 @@ class DomainGeneratorTest extends TestCase
         $this->assertTrue(file_exists(base_path("domain/Services/{$serviceName}Service.php")));
     }
 }
-
-
-?>
