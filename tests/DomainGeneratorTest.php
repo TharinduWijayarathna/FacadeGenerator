@@ -1,20 +1,49 @@
 <?php
 // tests/DomainGeneratorTest.php
 
+namespace Tharindu\DDDGenerator\Tests;
+
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
-use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class DomainGeneratorTest extends TestCase
 {
+    protected $app;
+
     /**
-     * Define environment setup.
+     * Set up the test environment.
      *
-     * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function setUp(): void
     {
-        // Define your environment setup here.
+        parent::setUp();
+
+        // Bootstrap Laravel application
+        $this->app = $this->createApplication();
+        $this->app->make(Kernel::class)->bootstrap();
+    }
+
+    /**
+     * Create the Laravel application.
+     *
+     * @return Application
+     */
+    protected function createApplication(): Application
+    {
+        $basePath = realpath(__DIR__ . '/../..');
+
+        // Load the Laravel application bootstrap file
+        $app = require $basePath . '/vendor/autoload.php';
+
+        $app->useEnvironmentPath($basePath);
+        $app->loadEnvironmentFrom('.env.testing');
+
+        $app->make(Kernel::class)->bootstrap();
+
+        return $app;
     }
 
     /**
