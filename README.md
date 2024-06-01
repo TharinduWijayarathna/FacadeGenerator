@@ -142,16 +142,6 @@ class UserService
 
 ---
 
-**Testing**
-
-You can run the tests using the following command:
-
-```bash
-composer test
-```
-
----
-
 **Contributing**
 
 Contributions are welcome! Please feel free to submit a pull request.
