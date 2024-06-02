@@ -29,6 +29,53 @@ You can then use these files to implement your domain logic.
 
 ---
 
+## Autoloading the Domain Directory
+
+To ensure Laravel autoloads your custom `domain` directory, you need to update the `composer.json` file of your Laravel application. Follow these steps:
+
+1. **Open your Laravel application's `composer.json` file.**
+
+2. **Locate the `autoload` section.** It should look something like this:
+
+   ```json
+   "autoload": {
+       "psr-4": {
+           "App\\": "app/"
+       },
+       "classmap": [
+           "database/seeds",
+           "database/factories"
+       ]
+   },
+   ```
+
+3. **Add your `domain` directory to the PSR-4 autoloading section.** If your domain directory is located at the root of your Laravel application, you can add it like this:
+
+   ```json
+   "autoload": {
+       "psr-4": {
+           "App\\": "app/",
+           "Domain\\": "domain/"
+       },
+       "classmap": [
+           "database/seeds",
+           "database/factories"
+       ]
+   },
+   ```
+
+   Make sure to adjust the path `"Domain\\"` and `"domain/"` according to the actual structure of your application.
+
+4. **Run `composer dump-autoload`** to regenerate the Composer autoloader files:
+
+   ```bash
+   composer dump-autoload
+   ```
+
+Once you've made these changes, Laravel will autoload classes from your `domain` directory just like it does with the `app` directory, making your domain logic easily accessible throughout your application.
+
+---
+
 **Functionalities**
 
 The package provides the following functionalities:
