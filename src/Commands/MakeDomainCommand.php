@@ -55,7 +55,11 @@ class MakeDomainCommand extends Command
 
         $stubContent = $this->files->get($stubPath);
 
-        $content = str_replace('{{ class }}', $name, $stubContent);
+        $content = str_replace(
+            ['{{ class }}', '{{ model }}'],
+            [$name, lcfirst($name)],
+            $stubContent
+        );
 
         $this->files->put($path, $content);
     }
