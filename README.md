@@ -107,15 +107,29 @@ _Using the Generated Files_
 Once the files are generated, you can implement your domain logic inside the service methods. For example:
 
 ```php
-// app/domain/Services/UserService.php
+<?php
 
-namespace Domain\Services;
+namespace Domain\Services\UserService;
+
+use App\Models\User;
 
 class UserService
 {
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = new User();
+    }
+
+    public function get(int $user_id)
+    {
+        return $this->user->find($user_id);
+    }
+
     public function create(array $data)
     {
-        // Implement create functionality
+       return $this->user->create($data);
     }
 
     public function read($id)
@@ -123,19 +137,26 @@ class UserService
         // Implement read functionality
     }
 
-    public function update($id, array $data)
+     protected function edit(User $user, array $data)
     {
-        // Implement update functionality
+        return array_merge($user->toArray(), $data);
+    }
+
+    public function update($user_id , array $data)
+    {
+        $user = $this->user->find($user_id);
+        return $user->update($this->edit($user, $data));
     }
 
     public function delete($id)
     {
-        // Implement delete functionality
+       $user = $this->user->find($id);
+       return $user->delete();
     }
 
     public function list()
     {
-        // Implement list functionality
+       return $this->user->all();
     }
 }
 ```
