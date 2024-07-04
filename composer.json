@@ -10,14 +10,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Tharindu\\DDDGenerator\\": "src/",
+            "Tharindu\\FacadeGenerator\\": "src/",
             "Domain\\": "domain/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Tharindu\\DDDGenerator\\DomainServiceProvider"
+                "Tharindu\\FacadeGenerator\\FacadeGeneratorServiceProvider"
             ]
         }
     },
