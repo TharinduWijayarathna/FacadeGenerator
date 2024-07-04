@@ -1,6 +1,6 @@
 <?php
 
-namespace Tharindu\DDDGenerator\Commands;
+namespace Tharindu\FacadeGenerator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;

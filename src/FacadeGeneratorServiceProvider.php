@@ -1,10 +1,10 @@
 <?php
 
-namespace Tharindu\DDDGenerator;
+namespace Tharindu\FacadeGenerator;
 
 use Illuminate\Support\ServiceProvider;
 
-class DomainServiceProvider extends ServiceProvider
+class FacadeGeneratorServiceProvider extends ServiceProvider
 {
     public function register()
     {

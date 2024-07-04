@@ -1,7 +1,7 @@
 <?php
 // tests/DomainGeneratorTest.php
 
-namespace Tharindu\DDDGenerator\Tests;
+namespace Tharindu\FacadeGenerator\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
