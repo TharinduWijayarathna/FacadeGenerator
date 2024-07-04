@@ -1,5 +1,5 @@
 {
-    "name": "tharindu/ddd_generator",
+    "name": "tharindu/facade_generator",
     "description": "A Laravel package to generate facades and services.",
     "type": "library",
     "license": "MIT",
