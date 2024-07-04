@@ -9,7 +9,7 @@ _Laravel Domain Generator_ is a package that provides a convenient way to genera
 You can install the package via Composer:
 
 ```bash
-composer require tharindu/ddd_generator
+composer require tharindu/facade_generator
 ```
 
 **Usage**
